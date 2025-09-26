@@ -1,0 +1,19 @@
+﻿Publicar .exe e .dll como self-contained
+abra um cmd na pasta "C:\workspace\apae-sbs\ConnectorAccess.Service\ConnectorAccess.Service" e execute:
+dotnet publish -c Release -r win-x64 --self-contained
+
+Pasta de publicação será em :
+C:\workspace\apae-sbs\ConnectorAccess.Service\ConnectorAccess.Service\bin\Release\netcoreapp3.1\win-x64\publish
+
+
+Para instalar o servico windows no servidor:
+abrir cmd como admin e executar:
+sc create <name of service you want to create> binPath= <path of executable of your app>
+ex:
+sc create ConnectorAccessService binPath= "C:\Parson\ConnectorAccess.Service\ConnectorAccess.Service.exe"
+
+Para desintalar o servico windows no servidor:
+abrir cmd como admin e executar:
+sc delete <name of service you want to create>
+ex:
+sc delete ConnectorAccessService

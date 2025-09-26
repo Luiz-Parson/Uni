@@ -1,0 +1,10 @@
+﻿using System;
+
+namespace ConnectorAccess.Service.models.dtos
+{
+    public class LoginDTO
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+}
