@@ -76,7 +76,7 @@ namespace ConnectorAccess
             // 
             // txtSKU
             // 
-            this.txtSKU.Location = new System.Drawing.Point(128, 105);
+            this.txtSKU.Location = new System.Drawing.Point(128, 62);
             this.txtSKU.Margin = new System.Windows.Forms.Padding(5);
             this.txtSKU.MaxLength = 250;
             this.txtSKU.Name = "txtSKU";
@@ -85,7 +85,7 @@ namespace ConnectorAccess
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(128, 63);
+            this.txtDescription.Location = new System.Drawing.Point(128, 20);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(5);
             this.txtDescription.MaxLength = 250;
             this.txtDescription.Name = "txtDescription";
@@ -96,7 +96,7 @@ namespace ConnectorAccess
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(17, 63);
+            this.lblDescription.Location = new System.Drawing.Point(17, 20);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(101, 20);
@@ -210,7 +210,7 @@ namespace ConnectorAccess
             // 
             // txtEpc
             // 
-            this.txtEpc.Location = new System.Drawing.Point(128, 19);
+            this.txtEpc.Location = new System.Drawing.Point(128, 104);
             this.txtEpc.Margin = new System.Windows.Forms.Padding(5);
             this.txtEpc.MaxLength = 250;
             this.txtEpc.Name = "txtEpc";
@@ -222,7 +222,7 @@ namespace ConnectorAccess
             // 
             this.lblEpc.AutoSize = true;
             this.lblEpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEpc.Location = new System.Drawing.Point(66, 22);
+            this.lblEpc.Location = new System.Drawing.Point(66, 107);
             this.lblEpc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEpc.Name = "lblEpc";
             this.lblEpc.Size = new System.Drawing.Size(52, 20);
@@ -254,7 +254,7 @@ namespace ConnectorAccess
             // 
             this.lblSKU.AutoSize = true;
             this.lblSKU.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSKU.Location = new System.Drawing.Point(66, 108);
+            this.lblSKU.Location = new System.Drawing.Point(66, 65);
             this.lblSKU.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSKU.Name = "lblSKU";
             this.lblSKU.Size = new System.Drawing.Size(52, 20);

@@ -81,5 +81,30 @@ namespace ConnectorAccess.Service.Controllers
             string result = JsonConvert.SerializeObject(validityReport);
             return Ok(result);
         }
+
+
+
+
+
+        [HttpPost("getLiveReport")]
+        public IActionResult GetLiveReport([FromBody] ReportDTO reportDTO)
+        {
+            DataTable liveReport = reportService.GetValidityReport(
+                reportDTO.Description,
+                reportDTO.Sku,
+                reportDTO.Epc,
+                reportDTO.InitialDate,
+                reportDTO.EndDate
+            );
+
+            string result = JsonConvert.SerializeObject(liveReport);
+            return Ok(result);
+        }
+
+
+
+
+
+
     }
 }

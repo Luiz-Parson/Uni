@@ -299,5 +299,50 @@ namespace ConnectorAccess.Service.Services
 
             return dt;
         }
+
+
+
+
+
+
+
+
+
+        public DataTable GetLiveReport(string description, string epc, string sku, DateTime initialDate, DateTime endDate)
+        {
+            DataTable dt = new DataTable();
+
+            string sql;
+
+            sql = @"";
+
+            try
+            {
+                using (var cn = (SqlConnection)context.Database.GetDbConnection())
+                {
+                    using (var cmd = new SqlCommand(sql, cn))
+                    {
+                        cmd.Parameters.AddWithValue("@Description", (object)description ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@EPC", (object)epc ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@SKU", (object)sku ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@InitialDate", initialDate);
+                        cmd.Parameters.AddWithValue("@EndDate", endDate);
+
+                        cn.Open();
+                        using (var da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                        cn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Erro GetLiveReport");
+            }
+
+            return dt;
+        }
     }
 }
