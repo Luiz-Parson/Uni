@@ -36,7 +36,7 @@ namespace ConnectorAccess
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ConnectorAccess.reports.ReportAccessControlDayGroup.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ConnectorAccess.reports.ReportLive.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.reportViewer1.Name = "reportViewer1";

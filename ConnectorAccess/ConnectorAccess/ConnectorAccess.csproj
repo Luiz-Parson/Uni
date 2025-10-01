@@ -270,6 +270,7 @@
       <DependentUpon>FrmProducts.cs</DependentUpon>
     </Compile>
     <Compile Include="models\AccessControlStock.cs" />
+    <Compile Include="models\GeneralReportRequestDTO.cs" />
     <Compile Include="models\ValidityReportDTO.cs" />
     <Compile Include="models\ExclusionControlDTO.cs" />
     <Compile Include="models\Logger.cs" />
@@ -376,6 +377,7 @@
     <EmbeddedResource Include="reports\ReportAccessControlProductsGroup.rdlc" />
     <EmbeddedResource Include="reports\ReportExclusionControl.rdlc" />
     <EmbeddedResource Include="reports\ReportValidity.rdlc" />
+    <EmbeddedResource Include="reports\ReportLive.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

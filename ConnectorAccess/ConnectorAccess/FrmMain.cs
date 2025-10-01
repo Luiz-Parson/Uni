@@ -150,6 +150,12 @@ namespace ConnectorAccess
             FormShow(new FrmReportExclusion());
         }
 
+        private void btnReportLive_Click(object sender, EventArgs e)
+        {
+            ActiveButton(btnReportLive);
+            FormShow(new FrmReportLive());
+        }
+
         private void btnReportStock_Click(object sender, EventArgs e)
         {
             ActiveButton(btnReportStock);

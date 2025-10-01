@@ -38,6 +38,7 @@ namespace ConnectorAccess
             this.btnSystemUsers = new System.Windows.Forms.Button();
             this.pnlSubMenuReport = new System.Windows.Forms.Panel();
             this.btnReportExclusion = new System.Windows.Forms.Button();
+            this.btnReportLive = new System.Windows.Forms.Button();
             this.btnReportStock = new System.Windows.Forms.Button();
             this.btnReportValidity = new System.Windows.Forms.Button();
             this.btnReportDay = new System.Windows.Forms.Button();
@@ -173,6 +174,7 @@ namespace ConnectorAccess
             // 
             this.pnlSubMenuReport.BackColor = System.Drawing.Color.White;
             this.pnlSubMenuReport.Controls.Add(this.btnReportExclusion);
+            this.pnlSubMenuReport.Controls.Add(this.btnReportLive);
             this.pnlSubMenuReport.Controls.Add(this.btnReportStock);
             this.pnlSubMenuReport.Controls.Add(this.btnReportValidity);
             this.pnlSubMenuReport.Controls.Add(this.btnReportDay);
@@ -180,7 +182,7 @@ namespace ConnectorAccess
             this.pnlSubMenuReport.Location = new System.Drawing.Point(0, 590);
             this.pnlSubMenuReport.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSubMenuReport.Name = "pnlSubMenuReport";
-            this.pnlSubMenuReport.Size = new System.Drawing.Size(354, 220);
+            this.pnlSubMenuReport.Size = new System.Drawing.Size(354, 275);
             this.pnlSubMenuReport.TabIndex = 11;
             this.pnlSubMenuReport.Visible = false;
             // 
@@ -206,6 +208,29 @@ namespace ConnectorAccess
             this.btnReportExclusion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportExclusion.UseVisualStyleBackColor = false;
             this.btnReportExclusion.Click += new System.EventHandler(this.btnReportExclusion_Click);
+            // 
+            // btnReportLive
+            // 
+            this.btnReportLive.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnReportLive.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReportLive.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnReportLive.FlatAppearance.BorderSize = 0;
+            this.btnReportLive.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnReportLive.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.btnReportLive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportLive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportLive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportLive.Location = new System.Drawing.Point(0, 165);
+            this.btnReportLive.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReportLive.Name = "btnReportLive";
+            this.btnReportLive.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnReportLive.Size = new System.Drawing.Size(354, 55);
+            this.btnReportLive.TabIndex = 9;
+            this.btnReportLive.Text = "    • Live";
+            this.btnReportLive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportLive.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReportLive.UseVisualStyleBackColor = false;
+            this.btnReportLive.Click += new System.EventHandler(this.btnReportLive_Click);
             // 
             // btnReportStock
             // 
@@ -594,6 +619,7 @@ namespace ConnectorAccess
         private System.Windows.Forms.Button btnExclusion;
         private System.Windows.Forms.Button btnReportDay;
         private System.Windows.Forms.Button btnReportExclusion;
+        private System.Windows.Forms.Button btnReportLive;
         private System.Windows.Forms.Button btnReportTitle;
         private System.Windows.Forms.Panel pnlSubMenuReport;
         private System.Windows.Forms.Button btnItens;

@@ -300,21 +300,27 @@ namespace ConnectorAccess.Service.Services
             return dt;
         }
 
-
-
-
-
-
-
-
-
         public DataTable GetLiveReport(string description, string epc, string sku, DateTime initialDate, DateTime endDate)
         {
             DataTable dt = new DataTable();
 
             string sql;
 
-            sql = @"";
+            sql = @"
+                SELECT
+                    P.Description,
+                    P.SKU,
+                    P.EPC,
+                    G.AccessedOn
+                FROM GeneralControl G
+                INNER JOIN Product P ON P.Id = G.ProductId
+                WHERE
+                    G.AccessedOn BETWEEN @InitialDate AND @EndDate
+                    AND (ISNULL(@Description, '') = '' OR P.Description LIKE '%' + @Description + '%')
+                    AND (ISNULL(@EPC, '') = '' OR P.EPC = @EPC)
+                    AND (ISNULL(@SKU, '') = '' OR P.SKU = @SKU)
+                ORDER BY
+                    G.AccessedOn ASC";
 
             try
             {

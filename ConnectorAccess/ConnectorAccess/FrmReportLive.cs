@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConnectorAccess
@@ -10,6 +15,11 @@ namespace ConnectorAccess
     {
         protected static readonly Logger Logger = new Logger();
         DataTable dt = new DataTable();
+        string apiAddress = ConfigurationManager.AppSettings["APIAddress"];
+        string apiPort = ConfigurationManager.AppSettings["APIPort"];
+
+        private static readonly HttpClient httpClient = new HttpClient();
+
         public FrmReportLive()
         {
             InitializeComponent();
@@ -63,14 +73,14 @@ namespace ConnectorAccess
             dtvResults.Columns["EPC"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtvResults.Columns["EPC"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dtvResults.Columns["Date"].HeaderText = "Enviado em";
-            dtvResults.Columns["Date"].Width = 130;
-            dtvResults.Columns["Date"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dtvResults.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dtvResults.Columns["Date"].DefaultCellStyle.Format = "dd/MM/yyyy - HH:mm:ss";
+            dtvResults.Columns["AccessedOn"].HeaderText = "Data";
+            dtvResults.Columns["AccessedOn"].Width = 130;
+            dtvResults.Columns["AccessedOn"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtvResults.Columns["AccessedOn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtvResults.Columns["AccessedOn"].DefaultCellStyle.Format = "dd/MM/yyyy - HH:mm:ss";
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private async void btnSearch_ClickAsync(object sender, EventArgs e)
         {
             try
             {
@@ -83,7 +93,7 @@ namespace ConnectorAccess
                 dtvResults.Columns.Clear();
                 dtvResults.DataSource = null;
 
-                var result = AccessControlDay.GenerateProductReport(txtDescription.Text.Trim(), txtEpc.Text.Trim(), txtSKU.Text.Trim(), dtpAccessedOnInitial.Value, dtpAccessedOnFinal.Value);
+                var result = await getReport(txtDescription.Text.Trim(), txtEpc.Text.Trim(), txtSKU.Text.Trim(), dtpAccessedOnInitial.Value, dtpAccessedOnFinal.Value);
 
                 if (result.Rows.Count == 0)
                 {
@@ -115,7 +125,7 @@ namespace ConnectorAccess
             dtRep.Columns.Add("Description");
             dtRep.Columns.Add("SKU");
             dtRep.Columns.Add("EPC");
-            dtRep.Columns.Add("Date");
+            dtRep.Columns.Add("AccessedOn");
 
             foreach (DataGridViewRow item in dtvResults.Rows)
             {
@@ -123,7 +133,7 @@ namespace ConnectorAccess
                     item.Cells["Description"].Value.ToString(),
                     item.Cells["SKU"].Value.ToString(),
                     item.Cells["EPC"].Value.ToString(),
-                    item.Cells["Date"].Value != null ? item.Cells["Date"].Value.ToString() : "");
+                    item.Cells["AccessedOn"].Value != null ? item.Cells["AccessedOn"].Value.ToString() : "");
             }
 
             return dtRep;
@@ -164,6 +174,47 @@ namespace ConnectorAccess
         {
             if (e.KeyCode == Keys.Enter)
                 btnSearch.PerformClick();
+        }
+
+        private async Task<DataTable> getReport(string description, string epc, string sku, DateTime initialDate, DateTime endDate)
+        {
+            try
+            {
+                string apiUrl = $"http://{apiAddress}:{apiPort}/api/report/getLiveReport";
+
+                var generalReportRequestDTO = new GeneralReportRequestDTO
+                {
+                    Description = description,
+                    Epc = epc,
+                    Sku = sku,
+                    InitialDate = initialDate,
+                    EndDate = endDate
+                };
+
+                var jsonContent = new StringContent(
+                    System.Text.Json.JsonSerializer.Serialize(generalReportRequestDTO),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                HttpResponseMessage response = await httpClient.PostAsync(apiUrl, jsonContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResponse = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<DataTable>(jsonResponse);
+                }
+                else
+                {
+                    Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao chamar o endpoint: {ex.Message}");
+                return null;
+            }
         }
 
         private void btnCsv_Click(object sender, EventArgs e)

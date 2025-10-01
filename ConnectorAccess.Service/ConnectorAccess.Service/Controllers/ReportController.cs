@@ -82,17 +82,13 @@ namespace ConnectorAccess.Service.Controllers
             return Ok(result);
         }
 
-
-
-
-
         [HttpPost("getLiveReport")]
         public IActionResult GetLiveReport([FromBody] ReportDTO reportDTO)
         {
-            DataTable liveReport = reportService.GetValidityReport(
+            DataTable liveReport = reportService.GetLiveReport(
                 reportDTO.Description,
-                reportDTO.Sku,
                 reportDTO.Epc,
+                reportDTO.Sku,
                 reportDTO.InitialDate,
                 reportDTO.EndDate
             );
@@ -100,11 +96,5 @@ namespace ConnectorAccess.Service.Controllers
             string result = JsonConvert.SerializeObject(liveReport);
             return Ok(result);
         }
-
-
-
-
-
-
     }
 }
